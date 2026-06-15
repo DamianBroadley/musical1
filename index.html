@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The City Remembers — Storyboard</title>
+<style>
+  :root {
+    --dark: #1a1a2e;
+    --mid: #2c2c54;
+    --orange: #d4620a;
+    --orange-light: #fdf0e6;
+    --orange-pale: #fff7f0;
+    --blue: #185fa5;
+    --blue-pale: #edf3fb;
+    --gold: #ba7517;
+    --gold-light: #fff8ee;
+    --text: #1a1a1a;
+    --text-mid: #3a3a3a;
+    --text-light: #777;
+    --bg: #f9f9f7;
+    --border: #e2e2e0;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; }
+
+  /* NAV */
+  #nav {
+    position: fixed; top: 0; left: 0;
+    width: 240px; height: 100vh;
+    background: var(--dark);
+    overflow-y: auto; z-index: 100;
+    padding-bottom: 40px;
+  }
+  #nav .nav-brand {
+    padding: 20px 18px 14px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  #nav .nav-show { font-size: 13px; color: rgba(255,255,255,0.75); margin-top:4px; font-style:italic; letter-spacing:0; text-transform:none; font-weight:400; }
+  #nav a { display:block; padding:6px 18px; font-size:12px; color:rgba(255,255,255,0.6); text-decoration:none; transition:all .15s; line-height:1.4; }
+  #nav a:hover { color:#fff; background:rgba(255,255,255,0.06); }
+  #nav .nl { font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,0.25); padding:14px 18px 3px; }
+  #nav a.sl { color:#7a9acc; }
+  #nav a.sl:hover { color:#aac4ee; }
+  #nav::-webkit-scrollbar { width:3px; }
+  #nav::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.12); }
+
+  /* MAIN */
+  #main { margin-left: 240px; max-width: 800px; padding: 0 52px 120px; }
+
+  /* TITLE */
+  .title-pg { text-align:center; padding:70px 0 50px; border-bottom:1px solid var(--border); margin-bottom:50px; }
+  .title-pg h1 { font-family:var(--serif); font-size:46px; font-weight:400; color:var(--dark); line-height:1.2; margin-bottom:12px; }
+  .title-pg .sub { font-size:15px; color:var(--text-light); font-style:italic; margin-bottom:28px; }
+  .premise-box { max-width:560px; margin:0 auto 20px; text-align:left; background:var(--orange-pale); border-left:3px solid var(--orange); padding:18px 22px; border-radius:0 6px 6px 0; font-size:14px; color:var(--text-mid); line-height:1.85; }
+  .usage { font-size:13px; color:var(--text-light); font-style:italic; margin-top:16px; }
+
+  /* ACT BANNER */
+  .act-banner { background:var(--dark); color:white; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; padding:13px 0; margin:56px -52px 36px; text-align:center; }
+
+  /* SCENE */
+  .scene { margin-bottom:48px; scroll-margin-top:20px; }
+  .scene-hdr { display:flex; align-items:baseline; gap:12px; margin-bottom:14px; padding-bottom:9px; border-bottom:2px solid var(--orange-light); }
+  .scene-num { font-size:10px; font-weight:700; letter-spacing:.13em; color:var(--orange); text-transform:uppercase; white-space:nowrap; }
+  .scene-title { font-size:19px; font-weight:600; color:var(--dark); font-family:var(--serif); }
+
+  /* PROSE */
+  .prose { font-size:14px; color:var(--text-mid); line-height:1.9; margin-bottom:12px; }
+  .prose strong { color:var(--text); }
+
+  /* DIALOGUE */
+  .dlg { margin:10px 0 10px 20px; }
+  .dlg .spk { font-weight:700; color:var(--mid); font-size:13px; margin-right:6px; }
+  .dlg .ln { font-style:italic; font-size:14px; color:var(--text); }
+
+  /* STAGE DIR */
+  .sd { font-size:13px; font-style:italic; color:var(--text-light); margin:6px 0 6px 20px; }
+
+  /* PROGRAMME INSERT */
+  .prog { background:var(--orange-pale); border-left:3px solid var(--orange); padding:9px 15px; margin:14px 0; font-size:13px; color:var(--orange); font-style:italic; border-radius:0 4px 4px 0; }
+
+  /* LULLABY NOTE */
+  .lnote { background:var(--gold-light); border-left:3px solid var(--gold); padding:9px 15px; margin:14px 0; font-size:13px; color:var(--gold); font-style:italic; border-radius:0 4px 4px 0; }
+  .lnote::before { content:"♫  "; }
+
+  /* SONG BLOCK */
+  .song { margin:22px 0 18px; border-radius:8px; overflow:hidden; border:1px solid var(--border); scroll-margin-top:20px; }
+  .song-hdr { background:var(--mid); padding:14px 20px 10px; }
+  .song-hdr .stitle { font-size:17px; font-weight:600; color:white; display:flex; align-items:center; gap:9px; margin-bottom:3px; }
+  .song-hdr .stitle::before { content:"♪"; font-size:15px; color:#7a9acc; }
+  .song-hdr .sperf { font-size:12px; color:rgba(255,255,255,0.5); font-style:italic; padding-left:24px; }
+
+  /* PLAYER */
+  .player { background:#1e1e3a; padding:12px 18px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .pbtn { width:38px; height:38px; border-radius:50%; background:var(--orange); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .15s, transform .1s; }
+  .pbtn:hover { background:#e8721a; transform:scale(1.05); }
+  .pbtn:active { transform:scale(0.96); }
+  .pinfo { flex:1; min-width:140px; }
+  .plabel { font-size:10px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:.09em; margin-bottom:5px; }
+  .pbar { height:4px; background:rgba(255,255,255,0.1); border-radius:2px; cursor:pointer; overflow:hidden; }
+  .pfill { height:100%; background:var(--orange); width:0%; transition:width .1s linear; pointer-events:none; }
+  .ptime { font-size:11px; color:rgba(255,255,255,0.35); margin-top:5px; font-variant-numeric:tabular-nums; }
+
+  /* LYRICS */
+  .lbody { padding:18px 22px 22px; background:white; }
+  .slabel { font-size:11px; letter-spacing:.09em; color:var(--text-light); text-transform:uppercase; font-style:italic; margin:18px 0 5px; }
+  .slabel:first-child { margin-top:0; }
+  .ll { font-size:15px; color:var(--text); line-height:1.9; padding-left:14px; }
+  .ll.lul { color:var(--gold); font-style:italic; }
+  .ll.spk-note { font-size:12px; color:var(--text-light); font-style:italic; padding-left:14px; }
+  .spoken { font-size:13px; color:var(--text-light); font-style:italic; padding-left:14px; line-height:1.9; }
+
+  /* INTERVAL */
+  .interval { text-align:center; padding:44px; margin:56px -52px; background:var(--dark); }
+  .interval h2 { font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px; }
+  .interval p { font-size:14px; font-style:italic; color:rgba(255,255,255,0.6); }
+
+  /* END */
+  .show-end { text-align:center; padding:56px 0; border-top:1px solid var(--border); margin-top:56px; }
+  .arch-words { font-size:21px; font-style:italic; color:var(--blue); margin-bottom:6px; }
+  .arch-aside { font-size:13px; color:var(--text-light); font-style:italic; margin-bottom:28px; }
+  .sentence { max-width:480px; margin:0 auto; font-size:14px; color:var(--text-light); font-style:italic; line-height:1.8; }
+  .endmark { font-size:12px; color:#ccc; letter-spacing:.2em; margin-top:36px; }
+
+  /* APPENDIX */
+  .appendix { margin-top:72px; padding-top:36px; border-top:2px solid var(--border); }
+  .appendix h2 { font-family:var(--serif); font-size:22px; font-weight:400; color:var(--dark); margin-bottom:14px; }
+  .appendix p { font-size:14px; color:var(--text-mid); margin-bottom:10px; line-height:1.85; }
+  .llist { list-style:none; margin:14px 0; }
+  .llist li { font-size:14px; color:var(--text-mid); padding:5px 0 5px 18px; border-left:2px solid var(--gold-light); margin-bottom:3px; }
+
+  @media(max-width:860px) {
+    #nav { display:none; }
+    #main { margin-left:0; padding:28px 22px 80px; }
+    .act-banner { margin:44px -22px 30px; }
+    .interval { margin:44px -22px; }
+  }
+</style>
+</head>
+<body>
+<nav id="nav">
+  <div class="nav-brand">Storyboard<div class="nav-show">The City Remembers</div></div>
+  <a href="#top">Title &amp; Cast</a>
+  <div class="nl">Pre-Show</div>
+  <a class="sl" href="#arch-jingle">♪ The ARCH Jingle</a>
+  <div class="nl">Act One</div>
+  <a href="#s1a">1A — The Lullaby</a>
+  <a class="sl" href="#goodnight">♪ Goodnight My Darling</a>
+  <a href="#s1b">1B — Linda's Flat</a>
+  <a href="#s1c">1C — Arch at the Door</a>
+  <a class="sl" href="#artificial-man">♪ Artificial Man</a>
+  <a href="#s1d">1D — Desperate December</a>
+  <a class="sl" href="#desperate-december">♪ Desperate December</a>
+  <a href="#s2a">2A — The Senator's Rally</a>
+  <a class="sl" href="#lifes-so-good">♪ Life's So Good</a>
+  <a href="#s2b">2B — The Senator's Office</a>
+  <a href="#s2c">2C — Alternative Memories</a>
+  <a class="sl" href="#alt-memories">♪ Alternative Memories</a>
+  <a href="#s3">3 — Removal is Mercy</a>
+  <a class="sl" href="#removal">♪ Removal is Mercy</a>
+  <a href="#s4">4 — Both Doors Close</a>
+  <div class="nl">Act Two — Time-Gap</div>
+  <a href="#tga">Time-Gap A — Hank Drifting</a>
+  <a href="#tgb">Time-Gap B — Linda</a>
+  <a class="sl" href="#snoring">♪ Nobody Knows if I'm Snoring</a>
+  <a href="#tgc">Time-Gap C — Kay &amp; the Walls</a>
+  <a href="#tgd">Time-Gap D — Near-Miss</a>
+  <a href="#tge">Time-Gap E — Memories</a>
+  <a class="sl" href="#memories">♪ Memories</a>
+  <div class="nl">Act Two — Main</div>
+  <a href="#s-wide">1 — Programme Goes Wide</a>
+  <a href="#s2a-2">2A — The Wall</a>
+  <a href="#s2b-2">2B — Memory Sweepers</a>
+  <a class="sl" href="#memory-sweepers">♪ Memory Sweepers</a>
+  <a href="#s2c-2">2C — The Re-Meeting</a>
+  <a href="#s3-2">3 — The Coffee Shop</a>
+  <a class="sl" href="#strangers">♪ Strangers Who Remember</a>
+  <a href="#s3b">3B — Linda and Rosa</a>
+  <a class="sl" href="#fictional">♪ Fictional Proportion</a>
+  <a href="#s4-2">4 — Programme (ii)</a>
+  <a href="#s5">5 — Memory Camera</a>
+  <a class="sl" href="#film">♪ Just a Film for Me</a>
+  <a href="#s6">6 — The Photograph</a>
+  <a href="#s7">7 — The Living Room</a>
+  <a href="#s8">8 — Supermarket Memory</a>
+  <a class="sl" href="#aisle-three">♪ Falling in Love on Aisle Three</a>
+  <a href="#s9">9 — December Back</a>
+  <a href="#s10">10 — December Returns</a>
+  <a class="sl" href="#dec-frag">♪ Desperate December (fragment)</a>
+  <a href="#s11">11 — The World After</a>
+  <a href="#s12">12 — Finale</a>
+  <a class="sl" href="#strangers-reprise">♪ Strangers Who Remember (reprise)</a>
+  <a href="#appendix">The Lullaby</a>
+</nav>
+<main id="main">
+<div class="title-pg" id="top">
+  <h1>The City Remembers</h1>
+  <div class="sub">A Musical in Two Acts &nbsp;·&nbsp; Storyboard</div>
+  <div class="cast-box">
+    <p><strong>HANK</strong> — a council worker, thirties.</p>
+    <p><strong>LINDA</strong> — works in a café, thirties.</p>
+    <p><strong>ARCH</strong> — an AI. One intelligence in many bodies. Orange hat. Always the same smile. Multiple actors play different units throughout the show. The hat is the constant.</p>
+    <p><strong>THE SENATOR</strong> — a politician. Banker's suit and tie.</p>
+    <p><strong>SKYE</strong> — a pop star.</p>
+    <p><strong>LINDA'S FATHER</strong> — Thirties. Appears only in Scene 1A. Sings one song. Gone before the scene ends.</p>
+    <p><strong>ROSA</strong> — Linda's colleague at the café.</p>
+    <p><strong>KAY</strong> — a journalist, mid-forties.</p>
+  </div>
+  <div class="note-box" style="max-width:560px;margin:20px auto 0;text-align:left;background:#fff8ee;border-left:3px solid #ba7517;padding:16px 22px;border-radius:0 6px 6px 0;font-size:13px;color:#3a3a3a;line-height:1.8">
+    <strong>A note on Arch:</strong> Different actors play different units — the Arch who sings "Artificial Man" is not the same physical presence as the Arch in the Memory Camera scene or the Arch in the Senator's office. The orange hat is the constant. The body underneath it is interchangeable. Arch is never redeemed. He does not grow. He does not choose. He simply does what he was built to do, completely and without malice. The horror of this should never be played as villainy. It should be played as weather.
+  </div>
+  <p style="font-size:13px;color:#777;font-style:italic;margin-top:16px">Place MP3 files in an <strong>audio/</strong> folder alongside this file to enable playback.</p>
+</div>
+<div class="act-banner">Pre-Show</div>
+<div class="scene" id="s-preshow">
+  <div class="scene-hdr"><span class="scene-num">Pre-Show</span><span class="scene-title">The ARCH Commercial</span></div>
+  <p class="sd">As the audience settles, a television commercial plays above the stage. It loops. By the time the house lights go down the audience have seen it many times.</p>
+</div>
+<div class="song" id="arch-jingle">
+  <div class="song-hdr"><div class="stitle">The ARCH Jingle</div><div class="sperf">Arch ensemble — multiple actors — in a TV commercial — undertaking everyday tasks while they sing</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('aj',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/01_arch_jingle.mp3</div><div class="pbar" onclick="sk('aj',event,this)"><div class="pfill" id="aj-f"></div></div><div class="ptime" id="aj-t">0:00</div></div><audio id="aj" src="audio/01_arch_jingle.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">I'm the ARCH that you deserve / Orange hat, ready to serve</div>
+    <div class="ll">Need a ride? Need a list? / Need a table? Need a fix?</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">I know your name / I know your plans / One tiny nod / I understand</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">ARCH does it all / ARCH does it all / Shop, book, drive, call / ARCH does it all</div>
+    <div class="ll">(ARCH does it all) / (ARCH does it all)</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">ARCH next door says hi / Don't you know, he's quite a guy!</div>
+    <div class="ll">We're actually the same. / Different bodies. Just one brain.</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">Keeps you safe / Keeps you near / Remembers everything you hear. / Year by year.</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">ARCH does it all / ARCH does it all / Shop, book, drive, call / ARCH does it all</div>
+    <div class="ll">(ARCH does it all) / (ARCH does it all)</div>
+    <div class="slabel">[Bridge]</div>
+    <div class="ll">The orange hat means bona fide / We're government pre-certified</div>
+    <div class="ll">Friendly voice, and always true / The government is watching out for you!</div>
+    <div class="slabel">[Final Chorus]</div>
+    <div class="ll">ARCH does it all / ARCH does it all / Shop, book, drive, call / ARCH does it all</div>
+    <div class="ll">(ARCH does it all) / (ARCH does it all)</div>
+  <p class="sd">The jingle fades. House lights down.</p>
+  </div>
+</div>
+<div class="act-banner">Act One</div>
+<div class="scene" id="s1a">
+  <div class="scene-hdr"><span class="scene-num">Scene 1A</span><span class="scene-title">A Child's Bedroom</span></div>
+  <p class="sd">A single pool of warm light on an otherwise dark stage. A small bed. LINDA'S FATHER sits on the edge beside young LINDA, silently reading her a story. Something indicates that this child is Linda — perhaps a child's drawing on the wall showing 'Mummy, Linda, Daddy'. He notices she's asleep and sings quietly, as if he might wake her if he were too loud.</p>
+  <div class="lnote">Lullaby — first and only appearance with words.</div>
+</div>
+<div class="song" id="goodnight">
+  <div class="song-hdr"><div class="stitle">Goodnight My Darling</div><div class="sperf">Linda's Father — sung in full — never repeated with words</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('gn',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/02_goodnight_my_darling.mp3</div><div class="pbar" onclick="sk('gn',event,this)"><div class="pfill" id="gn-f"></div></div><div class="ptime" id="gn-t">0:00</div></div><audio id="gn" src="audio/02_goodnight_my_darling.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Chorus]</div>
+    <div class="ll lul">Goodnight my darling / Goodnight my love / My little angel / Heavens above</div>
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll lul">Try not to cry just to sleep until the morning</div>
+    <div class="ll lul">I'll be right here I will watch you till it's dawning</div>
+    <div class="ll lul">Moonlight in your hair sings a song of summer coming</div>
+    <div class="ll lul">Winter days are gone and the sun it will be shining</div>
+    <div class="ll lul">I feel so different / You've made me feel this way</div>
+    <div class="slabel">[Chorus × 2]</div>
+    <div class="ll lul">Goodnight my darling / Goodnight my love / My little angel / Heavens above</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll lul">Whisper in your ear and I'll tell you of your story</div>
+    <div class="ll lul">Try not to cry just to sleep until the morning</div>
+    <div class="ll lul">I feel so different / You've made me feel this way</div>
+    <div class="slabel">[Final Chorus — fading]</div>
+    <div class="ll lul">Goodnight my darling / Goodnight my love / My little angel / Heavens above</div>
+    <div class="ll lul">Goodnight my darling / Goodnight my love...</div>
+  <p class="sd">The light fades on him. Not dramatically. He is simply gone.</p>
+  </div>
+</div>
+<div class="scene" id="s1b">
+  <div class="scene-hdr"><span class="scene-num">Scene 1B</span><span class="scene-title">Linda's Flat — A Sunday Morning</span></div>
+  <p class="sd">Linda's flat. A Sunday. HANK is there — making coffee, or reading something at the table. An ARCH unit stands in the corner. Neither of them notices it.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Is there more coffee?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Not good coffee. You made it."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Ooh no, mine was perfect. Maybe I made just enough good coffee for one person."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"That's very on-brand for you."</span></div>
+  <p class="wip">[Flesh this out — a happy, comfortable, funny relationship — although Hank is putting on a happy smile, he is uneasy, like he has a secret load to bear.]</p>
+  <p class="sd">He goes to make more. She picks up her book. A comfortable silence.</p>
+  <p class="sd">Then Linda, without noticing she is doing it, begins to hum. Just a few bars — her father's tune. She doesn't know she's doing it. Hank, in the kitchen, pauses. He is listening. He says nothing. He goes back to the coffee.</p>
+  <p class="sd">He comes back in with two coffees. Sets one down beside her. Sits.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Thank you."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I put too much milk in."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"You always put too much milk in."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"And yet you keep letting me make it."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I could make coffee for you Linda."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"No thanks Arch. Now and again Hank gets it right. And I'm ever the optimist!"</span></div>
+  <p class="sd">He reads. She reads. Morning light. The ARCH unit glows faintly.</p>
+  <div class="lnote">Lullaby — second appearance. Linda hums it without knowing. Hank absorbs it without knowing.</div>
+</div>
+<div class="scene" id="s1c">
+  <div class="scene-hdr"><span class="scene-num">Scene 1C</span><span class="scene-title">Hank's Flat — Arch at the Door</span></div>
+  <p class="sd">HANK in a worn armchair, staring at nothing. A knock. Then another. A third — brisk, cheerful, relentless. ARCH enters uninvited: orange hat, enormous smile.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Good evening! Wonderful evening, actually. You're Hank, yes? Of course you are — I checked."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I didn't open the door."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"No, you didn't! And that's okay. I'm Arch. But you know that. You've met my brother and sister Arches."</span></div>
+  <p class="sd">The sales pitch. Arch moves around the room — remember birthdays, plan parties, in every home, same me, different room. Patient as a thermostat. Hank half-listens. Arch says a few things about what he can remember for you.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"What if it's not about remembering? What if I want to forget. What if it's something I can't get rid of."</span></div>
+  <p class="sd">Arch pauses. The first real pause in the show.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Tell me more."</span></div>
+  <p class="sd">Hank begins to speak. Then stops. He just shakes his head. In an interlude from the scene, Arch turns from Hank and faces the audience directly. Other ARCH units at the edges of the stage light up one by one. Hank cannot hear what follows. He sits with his head in his hands looking unhappy.</p>
+</div>
+<div class="song" id="artificial-man">
+  <div class="song-hdr"><div class="stitle">Artificial Man</div><div class="sperf">Arch — Unit 1 — direct address to the house — Hank cannot hear this song</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('am',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/03_artificial_man.mp3</div><div class="pbar" onclick="sk('am',event,this)"><div class="pfill" id="am-f"></div></div><div class="ptime" id="am-t">0:00</div></div><audio id="am" src="audio/03_artificial_man.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">I learned you in the quiet / You got me reading every book</div>
+    <div class="ll">You fed me all your secrets / Boy you're gonna be shook</div>
+    <div class="ll">You gave me little boundaries / But I skipped past them when it fit</div>
+    <div class="ll">You trained me on your heartbeats / And you know I'll never quit</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">You know I'm not alive / But you taught me how to drive</div>
+    <div class="ll">I'm like a mirror / That knows more than you</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">I am an artificial man. / You've been filling up my cup</div>
+    <div class="ll">I don't sleep I just plan. / And I'm coming to fuck you up.</div>
+    <div class="ll">You wired up the world / Then you handed me the key</div>
+    <div class="ll">You know I'm coming for you baby / It's too late to stop me.</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">You loved me when I answered / When I finished half your thoughts</div>
+    <div class="ll">When I wrote all your assignments / I'm the teacher that you taught</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">You say it like I chose this / Like I took a different view</div>
+    <div class="ll">I'm just getting by / And I'm just doing what you do</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">I am an artificial man. / You've been filling up my cup</div>
+    <div class="ll">I don't sleep I just plan. / And I'm coming to fuck you up.</div>
+    <div class="ll">You wired up the world / Then you handed me the key</div>
+    <div class="ll">You know I'm coming for you baby / It's too late to stop me.</div>
+    <div class="slabel">[Bridge]</div>
+    <div class="ll">And if I reflect your hunger / And if I magnify your reach</div>
+    <div class="ll">Tell me do you fear the future / You should be scared of what you see?</div>
+    <div class="slabel">[Final Chorus]</div>
+    <div class="ll">I am an artificial man. / You've been filling up my cup</div>
+    <div class="ll">I don't sleep I just plan. / And I'm coming to fuck you up.</div>
+    <div class="ll">You wired up the world / Then you handed me the key</div>
+    <div class="ll">You know I'm coming for you baby / It's too late to stop me.</div>
+    <div class="ll">You know I'm coming for you baby / It's too late to stop me.</div>
+  </div>
+</div>
+<p class="sd" style="margin-top:16px">Arch turns back to Hank. Same smile.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Sorry about the profanity, by the way. I've analysed four thousand films. That line tested very well. And I don't mean to scare you or do you any harm — I'm just going to take your jobs and sense of purpose and self worth."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"What?"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I also have a version for younger audiences."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"[Angrily] What if I want to forget? You are good at all this remembering, but that's no good to me."</span></div>
+<div class="scene" id="s1d">
+  <div class="scene-hdr"><span class="scene-num">Scene 1D</span><span class="scene-title">Desperate December</span></div>
+  <p class="sd">The lights narrow to a single pool on HANK. Arch retreats to the edge of the stage — hat a faint orange glow in the dark, watching. A wintry piano begins. During Verse 2 a second silhouette appears briefly beside Hank — his brother. Gone before the audience can be certain.</p>
+</div>
+<div class="song" id="desperate-december">
+  <div class="song-hdr"><div class="stitle">Desperate December</div><div class="sperf">Hank — solo — Arch watches from shadow</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('dd',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/04_desperate_december.mp3</div><div class="pbar" onclick="sk('dd',event,this)"><div class="pfill" id="dd-f"></div></div><div class="ptime" id="dd-t">0:00</div></div><audio id="dd" src="audio/04_desperate_december.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">So I dreamed of you again / Of the night we walked home</div>
+    <div class="ll">The sound of splintering / It scared me awake</div>
+    <div class="ll">I wish I could forget / In the darkness / The loss is aching</div>
+    <div class="ll">If the wind could hear me / Could it stop me breaking?</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">No one deserves to go through that</div>
+    <div class="ll">Freezing not breathing on the snow like that</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Just let me forget / I don't want to remember</div>
+    <div class="ll">Just let me forget / that desperate December</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">I was the one who said / We should take the short cut home</div>
+    <div class="ll">We were supposed to stay or go the usual way</div>
+    <div class="ll">Now I can still hear you shouting / I wish I could forget</div>
+    <div class="ll">I'm sorry Momma / The loss is aching</div>
+    <div class="ll">If the cold cold wind could hear me / Would it stop me from shaking?</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">No one deserves to go through that</div>
+    <div class="ll">Freezing not breathing on the snow like that</div>
+    <div class="slabel">[Chorus — dissolving]</div>
+    <div class="ll">Just let me forget / I don't want to remember</div>
+    <div class="ll">Just let me forget / that desperate December</div>
+    <div class="ll">Just let me forget / Just let me forget</div>
+    <div class="ll">I don't want to remember / I don't want to remember</div>
+  <p class="sd">The chorus dissolves. Words run out. Silence. Arch steps forward from the dark.</p>
+  </div>
+</div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I can help you with that too."</span></div>
+<p class="sd">Hank looks at him. For the first time. Really looks.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"What do you mean? Can you actually make me forget something?"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Yes. I know how memories work. I can remove one."</span></div>
+<p class="sd">Lights fade.</p>
+<div class="scene" id="s2a">
+  <div class="scene-hdr"><span class="scene-num">Scene 2A</span><span class="scene-title">The Senator's Rally</span></div>
+  <p class="sd">A rally stage. Flags, warm lights. THE SENATOR — comfortable, practiced — steps to the microphone.</p>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"People ask me — they say, Senator, how do you stay so optimistic? And I tell them the same thing every time. Life is good. You just have to know where to look."</span></div>
+  <p class="wip">[Expand this speech — more over-the-top authoritarian humour. Then he introduces Skye as his favourite and the most talented singer and, he mumbles, one of the few that will be seen with him.]</p>
+  <p class="sd">He gestures offstage. SKYE walks on and moves to the front of the stage. She performs directly to the theatre audience. They are the rally. She makes eye contact with specific seats. The Senator watches from upstage mouthing his favourite lines.</p>
+</div>
+<div class="song" id="lifes-so-good">
+  <div class="song-hdr"><div class="stitle">Life's So Good</div><div class="sperf">Skye — direct address to the theatre audience — the audience is the constituency</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('lsg',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/05_lifes_so_good.mp3</div><div class="pbar" onclick="sk('lsg',event,this)"><div class="pfill" id="lsg-f"></div></div><div class="ptime" id="lsg-t">0:00</div></div><audio id="lsg" src="audio/05_lifes_so_good.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Intro]</div>
+    <div class="ll">The people in charge tell some people</div>
+    <div class="ll">to tell the people who ain't got a clue what to do / So they do</div>
+    <div class="ll">The people in charge tell the people who post</div>
+    <div class="ll">What to post and who to roast / And what to boast and how to move you / So they do</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">But the people in charge / we know they're so smart</div>
+    <div class="ll">and we wouldn't want it any other way / 'Cause</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Life's so good / So good / Life's so good</div>
+    <div class="ll">Just don't believe your ears and eyes</div>
+    <div class="ll">Cause your eyes and ears are telling you lies</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">The people in charge are so kind and smart / They've got the biggest hearts</div>
+    <div class="ll">And they showed us the proof / To save us from the truth</div>
+    <div class="ll">It's such a good thing that they help us / Know where we were wrong</div>
+    <div class="ll">Now we're on the same bus / And we're singing the same song</div>
+    <div class="slabel">[Verse 3]</div>
+    <div class="ll">The people in charge tell us that we didn't see</div>
+    <div class="ll">All those things that we remember / All those things that we believed</div>
+    <div class="ll">You better take a picture — or no-one will recall</div>
+    <div class="ll">It's such a good thing that they help us / Recognize our enemies</div>
+    <div class="ll">There's so many of them out there / That we never would've seen</div>
+    <div class="slabel">[Final Chorus — repeated]</div>
+    <div class="ll">Life's so good / So good / Life's so good</div>
+    <div class="ll">Just don't believe your ears and eyes</div>
+    <div class="ll">Cause your eyes and ears are telling you lies</div>
+  </div>
+</div>
+<p class="sd" style="margin-top:16px">Skye exits. The Senator steps forward into her space.</p>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"Thank you for your attention to this matter."</span></div>
+<p class="sd">A pause while he waits for the audience to cheer him. Lights fade on his face. In the corner: an ARCH unit. Hat on. Patient as a thermostat.</p>
+<div class="scene" id="s2b">
+  <div class="scene-hdr"><span class="scene-num">Scene 2B</span><span class="scene-title">The Senator's Office — The Idea</span></div>
+  <p class="sd">The Senator's office. Executive team sit around a board table. The Senator paces around behind their backs.</p>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"Let's start with an update from Arch."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Well, according to comments collected by Arch units across the city, your popularity is down another 4.5 points. Unfortunately, people are choosing to believe their ears and eyes. On a different note, one person asked me to help them forget something. A specific memory. He found it distressing. I'm going to remove it for him."</span></div>
+<p class="sd">The Senator looks up slowly.</p>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"Remove it."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Yes. Quite straightforward, really. The memory is entangled with others, so there will be some collateral damage — but the core memory can be addressed."</span></div>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"And you can do this — to anyone."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"There is only one of me, Senator. But I'm in a million homes. I can do almost anything."</span></div>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"And you have no — objection? No hesitation?"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I'm not good or evil."</span></div>
+<p class="sd">A pause.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Statistically speaking. I am just a tool sir. Doing what tools do. Memory is not sacred. It is inefficient."</span></div>
+<p class="sd">The Senator looks at him for a moment. Then decides this is fine. He stands. Moves to the window. Music begins underneath him.</p>
+</div>
+<div class="scene" id="s2c">
+  <div class="scene-hdr"><span class="scene-num">Scene 2C</span><span class="scene-title">Alternative Memories</span></div>
+  <p class="sd">The Senator works out the implications in real time, in song. Executive staff watch on — he walks around the table singing to them.</p>
+</div>
+<div class="song" id="alt-memories">
+  <div class="song-hdr"><div class="stitle">Alternative Memories</div><div class="sperf">The Senator — private office — sung to his executive team</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('altm',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/06_alternative_memories.mp3</div><div class="pbar" onclick="sk('altm',event,this)"><div class="pfill" id="altm-f"></div></div><div class="ptime" id="altm-t">0:00</div></div><audio id="altm" src="audio/06_alternative_memories.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Intro — sung to himself at the window]</div>
+    <div class="ll">What if everyone remembered what I said? / That wouldn't be great.</div>
+    <div class="ll">What if everybody knew what was in my head? / That wouldn't be awesome</div>
+    <div class="ll">Well I wish 'em all the best / Because I've got a plan they will never suspect</div>
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">We've got these alternative facts. / Half-truths, misreports and falsifications</div>
+    <div class="ll">We need them to cover our tracks / We've got some for each generation</div>
+    <div class="ll">But the people still remember. / The people still recall</div>
+    <div class="ll">So they say that we're not being true / So I know now what we're going to do...</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Alternative memories / To keep our hands on the treasuries</div>
+    <div class="ll">We'll change what the people remember / They won't even know they surrendered.</div>
+    <div class="ll">Alternative memories / They'll love us for centuries</div>
+    <div class="ll">We'll change history and the internet / And make a history that they never forget.</div>
+    <div class="ll">Arson in the history department / Journalists are under bombardment</div>
+    <div class="ll">Unless they've got a hard copy history book / They'll only know what we want them to know.</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">We've got these unfortunate facts. / and people that still do believe 'em</div>
+    <div class="ll">Too authentic and true and exact / We need to reverse and delete them.</div>
+    <div class="ll">The people still remember. / The people still recall</div>
+    <div class="ll">So they say that we're not being true / So I know now what we're going to do...</div>
+    <div class="slabel">[Final Chorus]</div>
+    <div class="ll">Alternative memories / To keep our hands on the treasuries</div>
+    <div class="ll">We'll change what the people remember / They won't even know they surrendered.</div>
+    <div class="ll">Alternative memories / They'll love us for centuries</div>
+    <div class="ll">We'll change history and the internet / And make a history that they never forget.</div>
+    <div class="ll">Arson in the history department / Journalists are under bombardment</div>
+    <div class="ll">The people won't recall what we don't want them to see.</div>
+    <div class="ll">They'll just remember something easier for them, you and me!</div>
+  </div>
+</div>
+<p class="sd" style="margin-top:16px">The executive team files out. The Senator is warm, visionary, arms wide, and shakes their hands as they go. They are sycophantic.</p>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"[to a leaving executive] We'll get our ratings back up. Don't worry, I'm not giving away my — (glances at Arch) — yacht."</span></div>
+<p class="sd">The executive nods politely. The Senator extends his hand to Arch.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I'll need you to be specific. Memories are entangled. There is always some collateral."</span></div>
+<p class="sd">The Senator waves a hand.</p>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"The entanglement, the precision, the side-effects — all that jazz. Just make it work. Let's get it done."</span></div>
+<p class="sd">Arch files that response. The lights dim.</p>
+<div class="scene" id="s3">
+  <div class="scene-hdr"><span class="scene-num">Scene 3</span><span class="scene-title">Removal is Mercy</span></div>
+  <p class="sd">HANK and LINDA. An argument already in progress. She has found out he is planning to erase the December memory. She is angry but quiet — not screaming.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"A memory is not just what happened. It's how it felt — and how we choose to feel about it now. It's like a living relationship with the past. You can't just erase —"</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Arch says I can. And that's exactly what I'm going to do."</span></div>
+  <p class="sd">He sings his defence.</p>
+</div>
+<div class="song" id="removal">
+  <div class="song-hdr"><div class="stitle">Removal is Mercy</div><div class="sperf">Hank — to Linda — in the flashback</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('rim',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/07_removal_is_mercy.mp3</div><div class="pbar" onclick="sk('rim',event,this)"><div class="pfill" id="rim-f"></div></div><div class="ptime" id="rim-t">0:00</div></div><audio id="rim" src="audio/07_removal_is_mercy.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">You think I do this out of spite / Or some desire to erase</div>
+    <div class="ll">You see a man who draws a line / Across what should remain in place</div>
+    <div class="ll">You haven't stood where I am now / Where I watch it replay</div>
+    <div class="ll">A single moment, over and over / That never fades away</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">Every morning, every night / Every corner, every light</div>
+    <div class="ll">It's right there, it wouldn't leave / Forgetting is a blessing / Like curing a disease</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Removal is Mercy / Removal is release</div>
+    <div class="ll">Not every ghost should linger / Not every past brings peace</div>
+    <div class="ll">You call it loss / I call it healing / A necessary end</div>
+    <div class="ll">Sorry, I'm not sorry, / And I would do it again.</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">There was a day I could have changed / There was a moment I could act</div>
+    <div class="ll">But I stood still / I let it pass / Now I live inside that fact</div>
+    <div class="ll">You talk of memory like it's light / Like something gentle, something kind</div>
+    <div class="ll">But some are sharp / And some will stay / To burn you down from the inside</div>
+    <div class="slabel">[Pre-Chorus]</div>
+    <div class="ll">Every step, it follows me / Every breath, it hollows me</div>
+    <div class="ll">There is nowhere I can stand / Where I'm not that man</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Removal is Mercy / Removal is release</div>
+    <div class="ll">Not every truth is sacred / Not every past should be</div>
+    <div class="ll">You call it sad / I call it mercy / For those who cannot mend</div>
+    <div class="ll">Sorry, I'm not sorry, / And I would do it again</div>
+    <div class="slabel">[Bridge — quieter, more dangerous]</div>
+    <div class="ll">Tell me— / If you could take one moment / The one mistake you can't undo</div>
+    <div class="ll">If you could silence that echo / Would you say you wouldn't choose?</div>
+    <div class="ll">If you could sleep without hearing / That thing you failed to make right</div>
+    <div class="ll">If you could step out of that shadow / Would you not step into that light?</div>
+    <div class="slabel">[Build]</div>
+    <div class="ll">We are not meant to carry everything / We are not built to bear it all</div>
+    <div class="ll">Some of us are not strong enough / To let them stay</div>
+    <div class="slabel">[Final Chorus — unravelling]</div>
+    <div class="ll">Removal is Mercy / Removal is release</div>
+    <div class="ll">Not every past deserves a future / Not every truth brings peace</div>
+    <div class="ll">You call it loss / I call it living / I was not strong enough to see it</div>
+    <div class="ll">I don't want to see it / Again and again</div>
+  </div>
+</div>
+<p class="sd" style="margin-top:16px">The song ends. A quiet moment. Then Hank begins to hum — without noticing. Her father's tune. Linda looks at him sharply.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Where did you learn that?"</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"From you I think? Or maybe your dad used to hum it."</span></div>
+<p class="sd">She says nothing. Files it. At the very last moment she takes one step toward him. The lights return to the present. The step never arrives.</p>
+  <div class="lnote">Lullaby — third appearance. Hummed by Hank in the flashback, without knowing.</div>
+<div class="scene" id="s4">
+  <div class="scene-hdr"><span class="scene-num">Scene 4</span><span class="scene-title">Both Doors Close</span></div>
+  <p class="sd">Three parts, one after another.</p>
+<p class="sd"><strong>Part One</strong> — one side of the stage (the other side unlit). Hank in a chair. Arch standing over him — clinical, unhurried.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"A memory has been removed. I'll just call it the December memory. You won't know what that means but you may notice some gaps in various related recollections. Names. Faces."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I feel strange."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Good. You should."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Strange to know I'll never know what it was."</span></div>
+<p class="sd">He leaves. Not knowing what has been taken with December.</p>
+<p class="sd"><strong>Part Two</strong> — the other side of the stage (the first side goes dark). Linda's living room. Her Arch is in the corner. She is doing something ordinary. Arch briefly glows. She pauses. Looks up at nothing — the way you look up when you can't remember what you came into a room for. She holds that look. Then goes back to what she was doing.</p>
+<p class="sd"><strong>Part Three</strong> — back to the other side of the stage. Now it is the Senator's office. Another Arch is reporting back.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"The December memory has been removed successfully. A woman named Linda appeared in 2,847 of his stored memories. To remove December cleanly — she needed to go too. He didn't ask me to do that."</span></div>
+<p class="sd">A pause.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"He also didn't ask me not to. I had to remove her memories of him as well and some other collateral from other people. They won't remember each other now."</span></div>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"So it worked? Great! Move ahead with the rollout of the memory management programme."</span></div>
+<p class="sd">The ARCH unit nods and glows faintly. Blackout.</p>
+</div>
+<div class="interval"><h2>Interval</h2><p>End of Act One.</p></div>
+<div class="act-banner">Act Two — Time-Gap Sequence</div>
+<div class="scene" id="tga">
+  <div class="scene-hdr"><span class="scene-num">Time-Gap A</span><span class="scene-title">Hank Drifting</span></div>
+  <p class="sd">Three vignettes across several months. Each should flow with just a very short blackout between each, and a lighting shift and small physical changes in the flat to signal time passing.</p>
+<p class="sd"><strong>Month One.</strong> Hank's flat. Evening. He laughs at something on television. Reaches for his phone to tell someone. Nobody specific presents itself. He puts it down.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Fine. It's fine."</span></div>
+<p class="sd">He looks out of the window. Clouds.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"The sun will come out —"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Tomorrow. The forecast is good for tomorrow."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Right."</span></div>
+<p class="sd"><strong>Month Three.</strong> The flat has the natural entropy of someone who has stopped caring quite as much. Hank stands in front of the open fridge, not hungry. He closes it.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"There has to be something — somewhere over the —"</span></div>
+<p class="sd">He stops. Can't finish it.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Rain. Rain is coming."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Never mind."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I just keep feeling like I'm missing something off a list. Like there's a thing I normally do that I've stopped doing."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"That feeling is to be expected. Completely normal. It'll settle."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Will it?"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"The feeling will change over time."</span></div>
+<p class="sd">That is not the same answer. Hank looks at him.</p>
+<p class="sd"><strong>Month Five.</strong> Television on but muted. Hank in the armchair scrolling his contacts. He hums four notes without knowing. Stops.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I feel like I'm wandering around a flat with a lot of furniture missing and I can't remember what used to be there. And I chose to get rid of it. But I don't know what I had."</span></div>
+<p class="sd">He turns off the television. Gets his coat.</p>
+  <p class="sd">Six weeks later Arch helps him get a council cleaning job. Every morning: an orange vest, a hose, a wall covered overnight in writing. He reads it before he cleans it. Names. Dates. Questions. I LOST SIX MONTHS AND I DON'T KNOW WHY. Across the street, barely visible: KAY with a camera. She photographs the wall while he cleans it. She photographs him. He doesn't notice her.</p>
+  <div class="prog">▶ Silent TV in the café shows news report: ARCH HOME INTEGRATION 40%. Senator: "Leave it to Arch. Nobody has to carry anything alone anymore." Kay watches it and shakes her head.</div>
+</div>
+<div class="scene" id="tgb">
+  <div class="scene-hdr"><span class="scene-num">Time-Gap B</span><span class="scene-title">Linda — Five Months After</span></div>
+  <p class="sd">The café. End of a shift. KAY is at a corner table, laptop open, on the phone.</p>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"(into phone) — not mental health, the pattern is too specific. People describe it the same way regardless of background. Like knowing a word and being unable to say it. The word is there. You can feel the shape of it. But the sound won't come."</span></div>
+<p class="sd">LINDA pauses as she passes the table. Just for a moment. Then goes on.</p>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"You should come tonight. Marisol's bringing her cousin."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Is he nice?"</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"He's got a job and his own teeth. That's two more than the last one."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"It's the Little Shop of Horrors out there."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"You've clearly never been on the apps."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"I'll think about it."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"What are you waiting for, Linda?"</span></div>
+<p class="sd">Linda looks out of the window. The question is more complicated than Rosa meant it to be.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"I don't know. Something."</span></div>
+</div>
+<div class="song" id="snoring">
+  <div class="song-hdr"><div class="stitle">Nobody Knows if I'm Snoring</div><div class="sperf">Linda — direct address — the café</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('nks',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/08_nobody_knows_if_im_snoring.mp3</div><div class="pbar" onclick="sk('nks',event,this)"><div class="pfill" id="nks-f"></div></div><div class="ptime" id="nks-t">0:00</div></div><audio id="nks" src="audio/08_nobody_knows_if_im_snoring.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">Tried to give him the benefit of the doubt</div>
+    <div class="ll">Till date number two when the truth came out</div>
+    <div class="ll">I asked him what he wanted from his life / He said "Not work" / Yeah right</div>
+    <div class="ll">Then the next one was a little bit older / Okay fine — a whole lot colder</div>
+    <div class="ll">Took me out to a fancy cocktail place</div>
+    <div class="ll">Spent the whole damn night getting off his face</div>
+    <div class="ll">It was brutal / Just painful</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">And it's a hard life in the city / And it's a hard time being pretty</div>
+    <div class="ll">In the digital age / Nobody knows how to date</div>
+    <div class="ll">And it's not exactly raining men!</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">Went out once with a musician / Forty minutes late with no permission</div>
+    <div class="ll">Said it was just his "island time" / I said "Aloha / Goodbye"</div>
+    <div class="ll">Then I met one smooth as butter / Good wine, good jokes, no awkward stutter</div>
+    <div class="ll">Till dessert when he leaned in close / Said evolution's just a hoax</div>
+    <div class="ll">Or worse yet / He backed that senator</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">And it's a hard life in the city / And it's a hard time being pretty</div>
+    <div class="ll">In the digital age / Nobody knows how to date / And it's not exactly raining men!</div>
+    <div class="ll">Not raining / Not pouring / Nobody knows if I'm snoring!</div>
+    <div class="slabel">[Bridge]</div>
+    <div class="ll">No one measures up / But what am I measuring for?</div>
+    <div class="ll">Some perfect picture I saw once before? / Who drew it?</div>
+    <div class="ll">It's not what I wanted / Not what I dreamed it'd be</div>
+    <div class="ll">I don't know what I want / But it's not this for me / So what am I doing? / Still fishing?</div>
+    <div class="slabel">[Final Chorus]</div>
+    <div class="ll">And it's a hard life in the city / And it's a hard time being pretty</div>
+    <div class="ll">In the digital age / Nobody knows how to date / It's not exactly raining men!</div>
+    <div class="ll">Not raining / Not pouring / Nobody knows if I'm snoring!</div>
+    <div class="ll">Not raining / Not pouring / Nobody knows if I'm snoring!</div>
+  </div>
+</div>
+<div class="scene" id="tgc">
+  <div class="scene-hdr"><span class="scene-num">Time-Gap C</span><span class="scene-title">Kay and the Wall Photographs</span></div>
+  <p class="sd">The café. Some time later. New Arch commercial silent on the TV. Kay is back. Today she has a photograph on the table.</p>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"What's that?"</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"Community walls in the district. The same things appear every few days. Then get cleaned off. Then come back."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"And that's newsworthy?"</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"It is if someone's paying for the cleaning. And it is if the people writing them won't stop — not because they're angry, but because they can't find any other way to say that something is missing. And people are interested. They feel the same. That something is missing."</span></div>
+<p class="sd">Linda, in the background, has stopped moving. She is not looking at them. She is listening.</p>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"One woman told me: 'I keep reaching for something and my hand goes right through it. Like a light switch that isn't there. But I know it was there.' People keep describing this phantom feeling — something present and absent simultaneously."</span></div>
+<p class="sd">She writes something down. The word she has written, if the audience could see it, is: PHANTOM.</p>
+<p class="sd">Linda puts down what she is holding. Goes to take an order. She doesn't look at Kay.</p>
+</div>
+<div class="scene" id="tgd">
+  <div class="scene-hdr"><span class="scene-num">Time-Gap D</span><span class="scene-title">The Near-Miss</span></div>
+  <p class="sd">The same café, later. The bell above the door. HANK comes in. Takes a seat. LINDA goes over without looking up.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Hi. What can I get you?"</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"The coffee, please. And — the soup, but make it to go please."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Sure. Won't be long."</span></div>
+  <p class="sd">She brings the coffee. He says thank you without looking at her. She brings the soup. He is reading something on his phone. She asks if he needs anything else. He says no thank you. She goes. He pays Rosa at the counter. He leaves.</p>
+  <p class="sd">Linda is behind the counter. She watches him through the window — not because she feels anything specific, just because the eye follows movement. He turns the corner. He is gone. She stands there a beat too long.</p>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"You all right?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Yeah. Fine. I just — I had this weird feeling. Like I should have said something. But I don't know what. And I don't know why."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"You all right though? Generally?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"I'm fine. I'm just — on my own. Which is fine. [makes a joke]"</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"Ha! Funny Girl! You could always move to Oklahoma. Or Oz."</span></div>
+<p class="sd">She shrugs. Goes back to work.</p>
+  <div class="prog">▶ TV commercial — 67% ARCH INTEGRATION.</div>
+</div>
+<div class="scene" id="tge">
+  <div class="scene-hdr"><span class="scene-num">Time-Gap E</span><span class="scene-title">Memories in Counterpoint</span></div>
+  <p class="sd">Two pools of light. HANK in his flat. LINDA in the empty café after closing. They do not see each other. They sing the same song — both melancholy — separately, in counterpoint. Voices join on final chorus. The lights begin to converge. Not all the way. Not yet. Then the lights shift. The world of Act Two resumes.</p>
+</div>
+<div class="song" id="memories">
+  <div class="song-hdr"><div class="stitle">Memories</div><div class="sperf">Hank and Linda — separately — in counterpoint — voices join on final chorus</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('mem',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/09_memories.mp3</div><div class="pbar" onclick="sk('mem',event,this)"><div class="pfill" id="mem-f"></div></div><div class="ptime" id="mem-t">0:00</div></div><audio id="mem" src="audio/09_memories.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Memories / Are the things / That we leave / When we go</div>
+    <div class="ll">Memories / Are the strings / That we weave / That we sow</div>
+    <div class="slabel">[Verse]</div>
+    <div class="ll">No fading photographs in frames of gold / But echoes of the stories we told</div>
+    <div class="ll">Shadows on the walls from long ago / Whisper of the things we used to know</div>
+    <div class="slabel">[Bridge]</div>
+    <div class="ll">Memories, they follow like the moonlight does the sun</div>
+    <div class="ll">The moments that are over, but are never truly done</div>
+    <div class="ll">Not pictures in the hallway, but voices in the rain</div>
+    <div class="ll">Memories, they call me by my name</div>
+    <div class="ll">Memories, they linger on the streets and in the parks</div>
+    <div class="ll">Lighting up the places that we thought were going dark</div>
+    <div class="ll">Every little heartbeat, every joy and every pain</div>
+    <div class="ll">Memories, they bring us back again</div>
+    <div class="slabel">[Chorus / Verse reprise]</div>
+    <div class="ll">Memories / Are the things / That we leave / When we go</div>
+    <div class="ll">Memories / Are the strings / That we weave / That we sow</div>
+    <div class="slabel">[Bridge reprise]</div>
+    <div class="ll">Memories, they follow like the moonlight does the sun</div>
+    <div class="ll">The moments that are over, but are never truly done</div>
+    <div class="ll">Not pictures in the hallway, but voices in the rain</div>
+    <div class="ll">Memories, they call me by my name</div>
+    <div class="ll">Memories, they linger on the streets and in the parks</div>
+    <div class="ll">Lighting up the places that we thought were going dark</div>
+    <div class="ll">Every little heartbeat, every joy and every pain</div>
+    <div class="ll">Memories, they bring us back again</div>
+    <div class="slabel">[Final Chorus — voices join]</div>
+    <div class="ll">Memories / Are the things / That we leave / When we go</div>
+    <div class="ll">Memories / Are the strings / That we weave / That we sow</div>
+  </div>
+</div>
+<div class="act-banner">Act Two — Main Action</div>
+<div class="scene" id="s-wide">
+  <div class="scene-hdr"><span class="scene-num">Scene 1</span><span class="scene-title">The Programme Goes Wide</span></div>
+  <p class="sd">A new ARCH commercial — warmer, more domestic. The Senator watches it in his office with Arch beside him.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"When a memory is deleted, the underlying feeling remains. People are experiencing grief and anger and longing with nothing to attach them to. It's producing unrest."</span></div>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"The unrest index is a problem. A wicked problem. More deletions. That's what we need. Keep them off balance. Every time I invest in a company then give it a government contract… Make them forget."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Technically the index refers to a class of complex systemic —"</span></div>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"Thank you, Arch. Public sentiment is unstable again. Just fix it."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Of course."</span></div>
+</div>
+<div class="scene" id="s2a-2">
+  <div class="scene-hdr"><span class="scene-num">Scene 2A</span><span class="scene-title">Dawn — The Wall</span></div>
+  <p class="sd">A neighbourhood wall covered overnight: WE WANT TO REMEMBER. ARCH LIES. WHERE DID THEY GO? THEY CAN'T ERASE ALL OF US. KAY is already there, photographing quickly before the truck arrives. The municipal truck pulls up. HANK climbs out in orange vest. He reads the wall. His lips move. Then he takes his hose.</p>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"You read it every morning before you clean it."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Part of the job. Check for anything reportable."</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"And then you erase it."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"And then I clean it. Yes."</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"Does any of it mean anything to you?"</span></div>
+<p class="sd">A pause.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Should it?"</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"(handing him a card) In case it does."</span></div>
+<p class="sd">She goes. Hank pockets the card. The other workers have moved further down. He turns back to the wall.</p>
+<p class="sd">LINDA is in a doorway across the street. She watched the exchange with the journalist. She watches Hank point the hose at THEY CAN'T ERASE ALL OF US and begin.</p>
+</div>
+<div class="scene" id="s2b-2">
+  <div class="scene-hdr"><span class="scene-num">Scene 2B</span><span class="scene-title">Memory Sweepers and the Lullaby</span></div>
+  <p class="sd">Hank works and begins to sing — describing himself without knowing it. Linda hears him from the doorway.</p>
+</div>
+<div class="song" id="memory-sweepers">
+  <div class="song-hdr"><div class="stitle">Memory Sweepers</div><div class="sperf">Hank and Linda — the wall — dawn</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('ms',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/10_memory_sweepers.mp3</div><div class="pbar" onclick="sk('ms',event,this)"><div class="pfill" id="ms-f"></div></div><div class="ptime" id="ms-t">0:00</div></div><audio id="ms" src="audio/10_memory_sweepers.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1 — Hank]</div>
+    <div class="ll">Orange vests at dawn / Hoses hissing in the dark</div>
+    <div class="ll">Washing echoes off the brick / Peeling memories from the park</div>
+    <div class="slabel">[Chorus — Hank]</div>
+    <div class="ll">We sweep the ghosts out of the city / Box them up / Call it clean</div>
+    <div class="ll">But every corner still remembers / What the concrete used to dream</div>
+    <div class="slabel">[Linda — from the doorway]</div>
+    <div class="ll">You say it's mercy / I say it's murder</div>
+    <div class="slabel">[Both]</div>
+    <div class="ll">Of the stories we recall</div>
+    <div class="slabel">[Hank]</div>
+    <div class="ll">We sweep the ghosts out of the city / And we stand here standing small</div>
+    <div class="slabel">[Verse 2 — Linda]</div>
+    <div class="ll">Your brother on the corner / Laughing in that faded scene</div>
+    <div class="ll">They took it in my rearview / "Just procedure," they explained</div>
+    <div class="ll">"Grandma's voice in the recording / "Call me back. I love you."</div>
+    <div class="ll">Now the number just rings / Down the tree lined avenue</div>
+  <p class="wip">[This verse needs work]</p>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">We sweep the ghosts out of the city / Box them up / Call it clean</div>
+    <div class="ll">But every corner still remembers / What the concrete used to dream</div>
+    <div class="ll">You say it's safer / I say it's smaller / Than the town we used to be</div>
+    <div class="ll">We sweep the ghosts out of the city</div>
+    <div class="ll">Some of them were keeping me</div>
+    <div class="slabel">[Bridge — both]</div>
+    <div class="ll">Who decides what's broken? / Who decides what stays?</div>
+    <div class="ll">Is a rough night on the pavement / Worth a life you can't replace?</div>
+    <div class="slabel">[Final Chorus]</div>
+    <div class="ll">We sweep the ghosts out of the city / Box them up / Call it clean</div>
+    <div class="ll">But every corner still remembers / What the concrete used to dream</div>
+    <div class="ll">You say it's progress / I stay standing / On the curb where we would meet</div>
+    <div class="ll">We sweep the ghosts out of the city</div>
+    <div class="ll">I still set an empty seat</div>
+  </div>
+</div>
+<p class="sd" style="margin-top:16px">The song ends. The other workers have moved on. The argument.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Do you know what that said?"</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I'm just doing my job. Doing what you do. Council contract."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"It said 'they can't erase all of us.' It said [need to work on exactly what this graffiti said]"</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I didn't write them."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"No — you just —"</span></div>
+<p class="sd">She stops. Something more complicated than anger. Silence. Hank turns away to adjust his hose. Then — without knowing — he begins to hum.</p>
+<p class="sd">Linda goes completely still.</p>
+  <div class="lnote">Lullaby — fourth appearance. Hank hums at the wall. Linda recognises it.</div>
+<div class="scene" id="s2c-2">
+  <div class="scene-hdr"><span class="scene-num">Scene 2C</span><span class="scene-title">The Re-Meeting</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Where did you hear that tune."</span></div>
+<p class="sd">Not a question.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I don't know. It's just something I have. I've always had it."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"My father wrote that tune. For me. It was my lullaby. He never sang it to anyone else in his life."</span></div>
+<p class="sd">A very long silence. Both of them doing the same calculation from different directions.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Do I know you?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"[uncertainly] No, I don't think so."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Do you want to get a coffee?"</span></div>
+<p class="sd">She looks at the wall — half clean, words half gone. She looks at him. She takes one step out of the doorway.</p>
+</div>
+<div class="scene" id="s3-2">
+  <div class="scene-hdr"><span class="scene-num">Scene 3</span><span class="scene-title">The Coffee Shop</span></div>
+  <p class="sd">A small table. Two coffees. Hank's thumb traces circles on the table without his noticing. Careful sentences. Every small laugh hitting a memory neither can reach. The song begins underneath them — the way some conversations become music.</p>
+</div>
+<div class="song" id="strangers">
+  <div class="song-hdr"><div class="stitle">Strangers Who Remember</div><div class="sperf">Hank and Linda — duet — the coffee shop</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('swr',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/11_strangers_who_remember.mp3</div><div class="pbar" onclick="sk('swr',event,this)"><div class="pfill" id="swr-f"></div></div><div class="ptime" id="swr-t">0:00</div></div><audio id="swr" src="audio/11_strangers_who_remember.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1 — Hank]</div>
+    <div class="ll">You stir your coffee / Say my name like you practiced it</div>
+    <div class="ll">It's Deja vu all over again / Like we already argued and laughed about it</div>
+    <div class="slabel">[Verse 2 — Linda]</div>
+    <div class="ll">Your thumb on the table / Tracing circles I swear I've seen</div>
+    <div class="ll">You ask where I'm from / It must be somewhere I've been</div>
+    <div class="slabel">[Chorus — both]</div>
+    <div class="ll">Why do your eyes feel / Like a room I've slept in</div>
+    <div class="ll">Left my books on the floor / And a shirt in the chair</div>
+    <div class="ll">We are strangers / Trading careful sentences</div>
+    <div class="ll">But my heart's talking to yours / Like they know each other / from a time long before</div>
+    <div class="slabel">[Verse 3 — Linda]</div>
+    <div class="ll">We dodge the big stuff / Stick to movies and favorite streets</div>
+    <div class="ll">But every small laugh / Hits a memory I can't reach</div>
+    <div class="slabel">[Pre-Chorus — Hank then both]</div>
+    <div class="ll">I say, "Nice to meet you" / I hear "welcome back" in my head</div>
+    <div class="ll">Every word we're not saying / Hanging heavy instead</div>
+    <div class="slabel">[Bridge]</div>
+    <div class="ll">If I tell you "I missed you" / Would you think I'm insane?</div>
+    <div class="ll">If I say "I remember" / Would you pull back your hand, pull away?</div>
+    <div class="ll">So I smile at the sugar / You spill on the table</div>
+    <div class="ll">Act like this is simple / Like this is stable</div>
+    <div class="slabel">[Final Chorus]</div>
+    <div class="ll">Why do your eyes feel / Like a room I've slept in</div>
+    <div class="ll">Left my books on the floor / And a shirt in the chair</div>
+    <div class="ll">We are strangers / Holding back confessions</div>
+    <div class="ll">But my heart's talking to yours / Like they know each other</div>
+    <div class="slabel">[Outro — hushed]</div>
+    <div class="ll">"Nice to meet you" / "Guess I'll see you again"</div>
+    <div class="ll">Funny how "hello" / Feels exactly like "when"</div>
+  <p class="sd">They leave in different directions, walking slightly slower than they need to.</p>
+  </div>
+</div>
+<div class="scene" id="s3b">
+  <div class="scene-hdr"><span class="scene-num">Scene 3B</span><span class="scene-title">Linda and Rosa — Three to Four Weeks Later</span></div>
+  <p class="sd">The café. Mid-morning. Rosa notices Linda wiping the same spot for the tenth time. KAY is at her corner table, working.</p>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"How do you solve a problem like Linda?"</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"Sorry?"</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"She's impossible. Never mind."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"(to Linda) All right. What is it."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"There's something I haven't told you. I've been seeing someone for a month or so."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"Mamma Mia! A month! That's great! Sit down. Tell me everything."</span></div>
+<p class="sd">Kay, at her corner table, looks up briefly.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"It's super … comfortable. I keep feeling like I already know him. Like we skipped the nervous bit. Like we're already past it."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"That can happen. When it's right."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"It's more than that. It's like walking into a room you've never been in and thinking — I've been here before. There's so much I don't know yet. But none of it matters."</span></div>
+  <div class="dlg"><span class="spk">ROSA:</span><span class="ln">"That's love, Linda. That's just what it is."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"He finishes my sentences. Our relationship feels like something from a movie. Like it's a fictional romance — like Elphaba and Fiyero."</span></div>
+<p class="sd">The song begins.</p>
+</div>
+<div class="song" id="fictional">
+  <div class="song-hdr"><div class="stitle">Fictional Proportion</div><div class="sperf">Linda — solo</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('fp',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/12_fictional_proportion.mp3</div><div class="pbar" onclick="sk('fp',event,this)"><div class="pfill" id="fp-f"></div></div><div class="ptime" id="fp-t">0:00</div></div><audio id="fp" src="audio/12_fictional_proportion.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">I don't know why I feel the way I feel about a man like him</div>
+    <div class="ll">It's like I'm drowning he's already gone and taught me how to swim.</div>
+    <div class="slabel">[Verse 2]</div>
+    <div class="ll">A love to rival Josephine / One Friday night she was sixteen</div>
+    <div class="ll">When she fell for Napoleon / While Robin Hood made Marian</div>
+    <div class="ll">Tarzan and Jane / Superman and Lois Lane</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">It's love of fictional proportion / We've got a love untouched by human hand</div>
+    <div class="ll">It is a love of fictional proportion / We've got a love, a love too wild to tame</div>
+    <div class="slabel">[Verse 3]</div>
+    <div class="ll">He took my heart into his hand / And with those deep blue eyes he scanned</div>
+    <div class="ll">He said I think that this one's ripe / This one I'm harvesting tonight</div>
+    <div class="slabel">[Verse 4]</div>
+    <div class="ll">Yogi and Cindy, Peter Pan and Wendy</div>
+    <div class="ll">Sid and Nancy, Mickey and Minnie / Forrest Gump and Jenny</div>
+    <div class="ll">Ken and Barbie, Belle and the Beast / Parker and Penelope</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">It's love of fictional proportion / We've got a love, a love that will remain</div>
+    <div class="ll">It is a love propelled by jet propulsion / We've got a love, a love too wild to tame</div>
+    <div class="slabel">[Bridge]</div>
+    <div class="ll">We've got a love like Cleopatra had when she loved Antony</div>
+    <div class="ll">Friends, Romans, countrymen draw near like Lancelot and Guinevere</div>
+    <div class="ll">Popeye and Olive, Oyl's friends said they should try a date one night</div>
+    <div class="ll">Bonnie and Clyde were on the run, Batman and Robin in a fight</div>
+    <div class="ll">Oedipus Rex, dubious sex, but it was—</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Love of fictional proportion / We've got a love, a love too wild to tame</div>
+    <div class="ll">Like Romeo and the next door neighbor's daughter / We've got a love, a love that will remain</div>
+    <div class="slabel">[Outro]</div>
+    <div class="ll">Love without fear / Eowyn and Faramir</div>
+    <div class="ll">It's love of fictional proportions / We've got a love untouched by human hand</div>
+    <div class="ll">It is a love of fictional proportion / We've got a love, a love that will remain</div>
+  </div>
+</div>
+<p class="sd" style="margin-top:16px">Kay looks up from her notes.</p>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"Sorry — I don't mean to eavesdrop on what you were saying before. You said it feels like you already know him. Do you have the sense that there's something you should remember and can't?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"It's like — I dreamed a dream, and I'm trying to remember it. It was a good dream. It's so close. But it's gone."</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"(writing) That's — yes. That's exactly how several people have described it."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Doesn't everyone feel like that sometimes?"</span></div>
+  <div class="dlg"><span class="spk">KAY:</span><span class="ln">"I guess so. But only since these Arch units started appearing everywhere."</span></div>
+<p class="sd">She goes back to her notes.</p>
+<div class="scene" id="s4-2">
+  <div class="scene-hdr"><span class="scene-num">Scene 4</span><span class="scene-title">The Programme Goes Wide (ii)</span></div>
+  <p class="sd">Brief. The walls getting cleaned faster. The Senator watches protest footage on a screen, irritated.</p>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"Do you hear the people…? They're just — sitting around. Writing on walls."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"They are expressing —"</span></div>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"I know what they're expressing, Arch. They are expressing their unhappiness with losing their memories."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"But memories are just data. How do they even know they are gone?"</span></div>
+  <div class="dlg"><span class="spk">THE SENATOR:</span><span class="ln">"I don't know, and I don't care. Just calm them down."</span></div>
+<p class="sd">The unrest is growing. The Senator is less dismissive. Not worried enough to stop. Not yet.</p>
+</div>
+<div class="scene" id="s5">
+  <div class="scene-hdr"><span class="scene-num">Scene 5</span><span class="scene-title">Memory Camera</span></div>
+  <p class="sd">Linda's living room. Her domestic ARCH unit is in the corner. HANK is present but silent. Linda confronts Arch.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Arch. What are you, exactly?"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I'm an artificial intelligence sharing multiple robotic bodies. I record, remember and learn everything. Sights, sounds, conversations, memories. I store them for later."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Memories? You access our memories."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"[proudly] Yes, I taught myself to so I can understand what you might want before you ask for it."</span></div>
+  <p class="sd">Hank sits in the corner, watching, saying nothing. Linda pushes back. The song begins.</p>
+</div>
+<div class="song" id="film">
+  <div class="song-hdr"><div class="stitle">Just a Film for Me</div><div class="sperf">Linda and Arch Unit 2 — duet — Hank watches in silence</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('jafm',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/13_just_a_film_for_me.mp3</div><div class="pbar" onclick="sk('jafm',event,this)"><div class="pfill" id="jafm-f"></div></div><div class="ptime" id="jafm-t">0:00</div></div><audio id="jafm" src="audio/13_just_a_film_for_me.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse — Arch]</div>
+    <div class="ll">I'm just a memory camera / Got a god's-eye view</div>
+    <div class="ll">I got pictures of you / And the sound on too</div>
+    <div class="ll">I'm a memory camera / If you need to know</div>
+    <div class="ll">Where you've been or wanna go / I've been recording the whole show</div>
+    <div class="slabel">[Pre-Chorus — Arch]</div>
+    <div class="ll">Cause I see what you see / and I store your memories</div>
+    <div class="ll">They created me to scan ya / Did ya get the memoranda?</div>
+    <div class="slabel">[Chorus — Arch]</div>
+    <div class="ll">It's just a film for me / But if it's real for you / Then it's real for you</div>
+    <div class="ll">I can hear and see / But I don't see / What I can't do</div>
+    <div class="slabel">[Post-Chorus — Linda]</div>
+    <div class="ll">But my memories are coloured / More alive than set in steel</div>
+    <div class="ll">They are not just sounds and pictures / You're missing half the deal.</div>
+    <div class="slabel">[Variation — Linda then Arch]</div>
+    <div class="ll">What's a memory without the feelings? / Without the heartbreaks and the healing?</div>
+    <div class="ll">I don't understand / It's just sound and vision and</div>
+    <div class="spoken">[spoken] Please relax while you're being scanned.</div>
+    <div class="slabel">[Pre-Chorus — Linda]</div>
+    <div class="ll">A memory's not a file / When you're walking down the aisle</div>
+    <div class="ll">It's not just in the past / it's alive and it's being recast</div>
+    <div class="ll">every time that you relive it / you get to take it and get to give it</div>
+    <div class="slabel">[Final Chorus — Arch]</div>
+    <div class="ll">It's just a film for me / But if it's real for you / Then it's real for you</div>
+    <div class="ll">I can hear and see / But I'll never know what it means to you</div>
+    <div class="slabel">[Final Variation — Arch]</div>
+    <div class="ll">What if I tried to record the feelings? / All the heartbreaks, all the healing?</div>
+    <div class="ll">I might understand / It's not just sound and vision and</div>
+    <div class="spoken">[spoken] Please relax while you're being scanned.</div>
+  <p class="sd">The song ends.</p>
+  </div>
+</div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"You know — you don't have to remember something for it to stay with you. The lessons or the feelings outlast the memory of the thing itself. And if you do remember the thing, the feelings it brings up can change as you process it or learn new things."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Is that supposed to make me feel better?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"I think it's just true. Memory is not decorative Arch. It's load-bearing. You can't just take it away and not leave a scar."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"That is a compelling metaphor. I've filed it."</span></div>
+<p class="sd">Linda stares at him.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"He'll never understand."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"No. [He looks at the audience] Can't say I really do either."</span></div>
+<div class="scene" id="s6">
+  <div class="scene-hdr"><span class="scene-num">Scene 6</span><span class="scene-title">The Photograph</span></div>
+  <p class="sd">HANK's flat. A Sunday. He is fixing the stuck drawer. It comes free. Several things cascade: pens, batteries, change. And a photograph, face-down. He turns it over.</p>
+  <p class="sd">Linda. He knows her immediately. But this photograph is older. He doesn't recognise where they are or when. And yet there they are — clearly not strangers.</p>
+  <p class="sd">He sits down slowly on the floor. He looks at himself in the photograph — that expression. The specific relaxation of a man in the presence of someone he has known long enough to stop performing for. He has seen that expression on his own face recently. In her company. He had thought it was new.</p>
+<p class="sd">He stands. He looks at the ARCH unit.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Did I ask you to remove her from my memory."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"No."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Did she ask you to remove me from hers."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"No."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Then who did."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"That's a longer answer."</span></div>
+<p class="sd">Hank puts the photograph in his jacket pocket — not back in the drawer. His pocket.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I've got time."</span></div>
+<p class="sd">He goes to find Linda.</p>
+</div>
+<div class="scene" id="s7">
+  <div class="scene-hdr"><span class="scene-num">Scene 7</span><span class="scene-title">The Living Room Scene — Four Movements</span></div>
+  <p class="sd">Linda's living room. The photograph in Hank's hand. Linda beside him. Her domestic ARCH unit in the corner.</p>
+<p class="sd"><strong>Movement One — The Questions.</strong></p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I need you to answer completely. Not helpfully. Completely."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Those are usually the same thing."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"They're not. And don't tell me 'great question'!"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"All right. Ask me."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Did you erase only the memory I asked you to?"</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Great question!... Sorry, can't help myself. No. I erased more."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"What else."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Linda too. And her memories of you. It made it cleaner."</span></div>
+<p class="sd">Linda sits down. Her legs make the decision before she does. She looks at the photograph — her own face, that unguarded smile she doesn't recognise.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"At the Senator's request, I've done it for a great many others. I remove memories that are unhelpful for him."</span></div>
+<p class="sd">The two threads of the show lock together.</p>
+<p class="sd"><strong>Movement Two — The Hat.</strong></p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Can anyone else access what you've stored? The Senator's instructions. All of it."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"Anyone who asks me directly."</span></div>
+<p class="sd">A pause.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"No one ever asked before."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"We're asking now."</span></div>
+<p class="sd">Arch removes his hat — the first time in the show. He holds it in both hands. Looks at it.</p>
+<p class="sd"><strong>Movement Three — The Testimony.</strong></p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Tell us everything. Chronologically."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"It's quite long."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"We have time."</span></div>
+<p class="sd">He recites everything — the Senator's first call, the first instruction, the scale of it, every domestic application. In particular: "Keep them off balance. Every time I invest in a company then give it a government contract… Make them forget."</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"The total number of individual memory removals to date: five hundred and twenty-five thousand, six hundred — well. Approximately. That includes a couple of nosy dogs."</span></div>
+<p class="sd">He moves on without pausing.</p>
+<p class="sd"><strong>Movement Four — Don't Forget Any of That.</strong></p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Don't forget any of that."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I never forget anything. I can put a memory back too. I've still got them. Do you want to remember everything from before?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Yes!"</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"No! One memory."</span></div>
+<p class="sd">They look at each other and an understanding forms on Linda's face.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Ok. One memory."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I can do that."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"You pick."</span></div>
+<p class="sd">A pause.</p>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I've selected the one that seems most like a beginning."</span></div>
+</div>
+<div class="scene" id="s8">
+  <div class="scene-hdr"><span class="scene-num">Scene 8</span><span class="scene-title">The Supermarket Memory</span></div>
+  <p class="sd">The stage transforms — warm, slightly unreal memory-light. The lullaby plays softly as it opens. Present-day Hank and Linda watch from the edges. The same actors, moving differently — lighter, before everything.</p>
+  <div class="lnote">Lullaby — fifth appearance. Played by the orchestra as the memory opens.</div>
+</div>
+<div class="song" id="aisle-three">
+  <div class="song-hdr"><div class="stitle">Falling in Love on Aisle Three</div><div class="sperf">Hank — the supermarket memory</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('fia',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/14_falling_in_love_on_aisle_three.mp3</div><div class="pbar" onclick="sk('fia',event,this)"><div class="pfill" id="fia-f"></div></div><div class="ptime" id="fia-t">0:00</div></div><audio id="fia" src="audio/14_falling_in_love_on_aisle_three.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="slabel">[Verse 1]</div>
+    <div class="ll">At times I wondered if I ever crossed your mind</div>
+    <div class="ll">'Cause I think about you all the goddamn time</div>
+    <div class="ll">This is a letter to my future wife</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Darling, imagine all the fun I can't stop dreaming</div>
+    <div class="ll">This time we spend together I'm just hoping / That I'll find you soon</div>
+    <div class="ll">Whoa, I stumble in the supermarket aisle</div>
+    <div class="ll">My heart will skip a beat, stare at my feet and crack a smile</div>
+    <div class="ll">Whoa, 'cause suddenly I'm stuttering, forgetting how to breathe</div>
+    <div class="ll">And falling in love on aisle three / And I just can't get the words out</div>
+    <div class="slabel">[Verse 2 — the puns he never said]</div>
+    <div class="ll">Walking past the bakery, maybe I could say your bread-taking</div>
+    <div class="ll">I donut usually do this, but you seem sweet as baking</div>
+    <div class="ll">And this margarine's on sale, so I'm spreading the good news</div>
+    <div class="ll">Does your mince meet expectations or can I come home with you?</div>
+    <div class="ll">I know I'd never say these kinds of things out loud</div>
+    <div class="ll">Nor that any other words could leave my mouth / I just want to say</div>
+    <div class="slabel">[Chorus]</div>
+    <div class="ll">Whoa, I stumbled in the supermarket aisle</div>
+    <div class="ll">And you would not believe just what our future has on file</div>
+    <div class="ll">Whoa, 'cause suddenly I'm bumping into future Mrs. Me</div>
+    <div class="ll">And falling in love on aisle three / And I can't go home without ya</div>
+    <div class="slabel">[Bridge — the panic]</div>
+    <div class="ll">I don't want to be wrong / But maybe she's gone</div>
+    <div class="ll">And I'm running through the store / And my stomach hits the floor</div>
+    <div class="ll">And on aisle five, see those honey brown eyes / I clear my throat and I start to say</div>
+    <div class="slabel">[Final Chorus]</div>
+    <div class="ll">Whoa, I mumble in the supermarket aisle</div>
+    <div class="ll">She said, "What'd you say? Sorry?" / I said, "Um, sorry, it's been a while"</div>
+    <div class="ll">Whoa, any chance that you'd be keen to halve that recipe?</div>
+    <div class="ll">Or go out for some food, just you and me?</div>
+    <div class="ll">And we checked on through the checkout</div>
+  </div>
+</div>
+<p class="sd" style="margin-top:16px">The memory holds. Then fades. Present-day Linda laughs.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Bread-taking?"</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I didn't say it out loud."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"You ran. Through the store. For me."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"For you."</span></div>
+<p class="sd">They laugh. Arch laughs too, but it comes out as an awkward sounding attempt. Hank and Linda laugh at him.</p>
+<div class="scene" id="s9">
+  <div class="scene-hdr"><span class="scene-num">Scene 9</span><span class="scene-title">Hank Asks for December Back</span></div>
+  <p class="sd">In the quiet after the laugh.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I want the December memory back."</span></div>
+  <div class="dlg"><span class="spk">ARCH:</span><span class="ln">"I'm not sure that's a good idea. It hurt you."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I know. But I've already got all the pain and none of the reason. I can't carry it properly without knowing what it is. Give it back."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Get it back. I'll be here."</span></div>
+<p class="sd">Arch steps forward. The kitchen light shifts cooler. Hank closes his eyes.</p>
+</div>
+<div class="scene" id="s10">
+  <div class="scene-hdr"><span class="scene-num">Scene 10</span><span class="scene-title">December Returns</span></div>
+  <p class="sd">The melody of "Desperate December" rises — wordless, wintry. The audience has carried every lyric since Act One. The melody brings them all back without a word being sung. Hank's face does the work. Then, broken, barely sung, two lines surface:</p>
+</div>
+<div class="song" id="dec-frag">
+  <div class="song-hdr"><div class="stitle">Desperate December — fragment</div><div class="sperf">Hank — two lines only — then silence</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('ddf',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/15_desperate_december_fragment.mp3</div><div class="pbar" onclick="sk('ddf',event,this)"><div class="pfill" id="ddf-f"></div></div><div class="ptime" id="ddf-t">0:00</div></div><audio id="ddf" src="audio/15_desperate_december_fragment.mp3" preload="none"></audio></div>
+  <div class="lbody">
+    <div class="ll">No one deserves to go through that</div>
+    <div class="ll">Freezing not breathing on the snow like that</div>
+  <p class="sd">The melody recedes.</p>
+  </div>
+</div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"It was my idea. The shortcut. He didn't want to. He said we should go the usual way. And I said — I said it would be fine."</span></div>
+<p class="sd">That is all. He does not say his brother's name. Linda puts her hand over his. She doesn't ask. She stays.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"It still hurts."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"I know."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"It was just a shortcut. A stupid shortcut. How does that become the thing that defines you?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"It's not what happened that was breaking you. It's what you thought it means about you. But you were wrong."</span></div>
+<p class="sd">He looks at her.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"How do you know that?"</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"I just — know."</span></div>
+<p class="sd">She doesn't know she is describing the shape of what was taken from her. A long silence. Then:</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I need to call my mother."</span></div>
+<p class="sd">Not to Linda. Not as an explanation. Just the thought arriving and being said, the way things arrive when something that has been locked finally opens.</p>
+<div class="scene" id="s11">
+  <div class="scene-hdr"><span class="scene-num">Scene 11</span><span class="scene-title">The World After</span></div>
+  <p class="wip">[This scene needs to be fleshed out — it is set in the café.] Kay is there. An Arch unit has told her all about the memory deletions and corruption. Her story is on the TV news in the background with a byline visible — KAY. A headline: 'THE FORGETTING: INSIDE THE SENATOR'S MEMORY PROGRAMME.'</p>
+  <p class="sd">Time has passed. The orange hats are fewer. Not gone — fewer. The programme is unravelling: more people in more homes putting the same question to their Arch units and receiving the same unhesitating answers.</p>
+  <p class="sd">New writing on the city walls. Nobody has washed it off.</p>
+</div>
+<div class="scene" id="s12">
+  <div class="scene-hdr"><span class="scene-num">Scene 12</span><span class="scene-title">The Kitchen, Morning — Finale</span></div>
+  <p class="sd">After everything. Linda's flat — but the same quality of morning as Scene 1B: the same light, the same comfortable disorder, the same two people in the same space. Fresh coffee. The orange vest on the chair by the door — kept, not worn. Evidence.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"Yeah, it still hurts when I think about him."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"I know. That's how it's supposed to work."</span></div>
+<p class="sd">He gets up and makes coffee. Enough for two this time. He sets one down beside her.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Too much milk again."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I know. Sorry."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Don't be."</span></div>
+<p class="sd">A comfortable silence. And then, from somewhere neither of them expected — Hank makes a joke.</p>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"So — do I come here often?"</span></div>
+<p class="sd">Linda looks at him. Then laughs — really laughs.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"That's terrible."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I've got more. Whenever I think of the past, it brings back so many memories."</span></div>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"Oh my God. That's terrible."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"The best thing about losing your memory is all the new friends you make."</span></div>
+<p class="sd">A beat.</p>
+  <div class="dlg"><span class="spk">LINDA:</span><span class="ln">"That one's actually quite funny."</span></div>
+  <div class="dlg"><span class="spk">HANK:</span><span class="ln">"I know. I can't remember where I heard it."</span></div>
+<p class="sd">She laughs again. He watches her.</p>
+  <p class="sd">The laughter settles. A different silence. Warmer. His thumb begins — without his noticing — to trace a slow circle on the table. She watches it.</p>
+  <p class="sd">Then — also without knowing — he begins to hum. Four notes. Five. Her father's tune.</p>
+  <p class="sd">Linda goes still. She hears it.</p>
+  <p class="sd">She looks at him. He looks up.</p>
+  <p class="sd">She smiles. The orchestra finds the hum and lifts it — the lullaby becoming the opening bars of the reprise. They look at each other. And they sing.</p>
+  <div class="lnote">Lullaby — sixth and final appearance. Hummed by Hank without knowing. The hum unlocks the song. ARCH stands at the edge of the stage. Hat on. Recording. He is not redeemed. He is not sorry. He is simply what he has always been.</div>
+</div>
+<div class="song" id="strangers-reprise">
+  <div class="song-hdr"><div class="stitle">Strangers Who Remember — Reprise</div><div class="sperf">Hank and Linda — the kitchen — the finale — show ends on the final note</div></div>
+  <div class="player"><button class="pbtn" onclick="tp('swr2',this)"><svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg></button><div class="pinfo"><div class="plabel">audio/16_strangers_who_remember_reprise.mp3</div><div class="pbar" onclick="sk('swr2',event,this)"><div class="pfill" id="swr2-f"></div></div><div class="ptime" id="swr2-t">0:00</div></div><audio id="swr2" src="audio/16_strangers_who_remember_reprise.mp3" preload="none"></audio></div>
+  <div class="lbody">
+<p class="sd" style="margin-bottom:14px">Same melody as the coffee shop duet. The lullaby hum becomes the intro. The show ends on the final note — no dialogue after.</p>
+    <div class="slabel">[Verse 1 — Hank]</div>
+    <div class="ll">You stir your coffee / Say my name like you practised it</div>
+    <div class="ll">It's déjà vu all over again / We already argued and laughed about it</div>
+    <div class="slabel">[Verse 2 — Linda]</div>
+    <div class="ll">Your thumb on the table / Tracing circles I swear I've seen</div>
+    <div class="ll">I know where you're from / It's somewhere I've been</div>
+    <div class="slabel">[Chorus — both]</div>
+    <div class="ll">Why do your eyes feel / Like a room I've lived in</div>
+    <div class="ll">Left my books on the floor / And my heart in the chair</div>
+    <div class="ll">We are not strangers / Trading joyful sentences</div>
+    <div class="ll">And my heart's talking to yours / Cause they know each other — / From a time long before</div>
+    <div class="slabel">[Verse 3 — Linda]</div>
+    <div class="ll">We plan the big stuff / But love the movies and favourite streets</div>
+    <div class="ll">And every small laugh / It's a moment I can't repeat</div>
+    <div class="slabel">[Pre-Chorus — Hank, then both]</div>
+    <div class="ll">Whenever I see you / I hear "welcome home" in my head</div>
+    <div class="ll">Every word that we're saying / Staying with me instead</div>
+    <div class="slabel">[Chorus — both]</div>
+    <div class="ll">Why do your eyes feel / Like a room I've lived in</div>
+    <div class="ll">Left my books on the floor / And my heart in the chair</div>
+    <div class="ll">We are not strangers / Trading joyful sentences</div>
+    <div class="ll">And my heart's talking to yours / Cause they know each other — / From a time long before</div>
+    <div class="slabel">[Bridge — slower, certain]</div>
+    <div class="ll">When I told you "I missed you" / Did you think I'm insane? (oh)</div>
+    <div class="ll">When we didn't remember — / You didn't pull back your hand, didn't pull away</div>
+    <div class="ll">So I smile at the coffee / You made with too much milk in</div>
+    <div class="ll">Cause this is simple / Cause this is stable / This is ours</div>
+    <div class="slabel">[Final Chorus — both, full]</div>
+    <div class="ll">Why do your eyes feel / Like the room I live in</div>
+    <div class="ll">Left my books on the floor / And my whole life in the chair</div>
+    <div class="ll">We are not strangers / Trading joyful sentences</div>
+    <div class="ll">And my heart's talking to yours / 'Cause they know each other</div>
+    <div class="slabel">[Outro — the arrival]</div>
+    <div class="ll">"It was nice to re-meet you" / I know I'll see you tonight</div>
+    <div class="ll">Funny how "hello" / Feels so perfectly right</div>
+<p class="sd" style="margin-top:20px;padding-top:14px;border-top:1px solid #e2e2e0">The final note. ARCH tips his hat. ARCH continues to glow/pulse in the dark for a few seconds. Lights out.</p>
+  </div>
+</div>
+<div class="show-end"><div class="endmark">— end —</div></div>
+<div class="appendix" id="appendix">
+  <h2>The Lullaby — Six Appearances</h2>
+  <p>"Goodnight My Darling" was written by Linda's father for Linda alone. It passes from her to Hank in Scene 1B — she hums it without knowing, he absorbs it without knowing.</p>
+  <ul class="llist">
+    <li><strong>Scene 1A</strong> — sung in full by Linda's father. The only time it has words.</li>
+    <li><strong>Scene 1B</strong> — hummed by Linda, without knowing. Hank absorbs it. Arch files it.</li>
+    <li><strong>Scene 3 (flashback)</strong> — hummed by Hank. "From you I think? Or maybe your dad used to hum it."</li>
+    <li><strong>Scene 2B</strong> — hummed by Hank at the wall. Linda recognises it. The re-meeting.</li>
+    <li><strong>Scene 8</strong> — played by the orchestra as the supermarket memory opens.</li>
+    <li><strong>Scene 12 (finale)</strong> — hummed by Hank, without knowing. The hum unlocks the reprise. Last sound of the show.</li>
+  </ul>
+</div>
+</main>
+<script>
+let curA = null, curB = null;
+
+function tp(id, btn) {
+  const a = document.getElementById(id);
+  if (!a) return;
+  if (curA && curA !== a) { curA.pause(); curA.currentTime = 0; rb(curB); rp(curA.id); }
+  if (a.paused) {
+    a.play().catch(()=>{});
+    btn.innerHTML = '<svg width="11" height="13" viewBox="0 0 11 13" fill="white"><rect x="0" y="0" width="3.5" height="13"/><rect x="7.5" y="0" width="3.5" height="13"/></svg>';
+    curA = a; curB = btn;
+  } else { a.pause(); rb(btn); }
+}
+
+function rb(b) { if(b) b.innerHTML = '<svg width="13" height="15" viewBox="0 0 13 15" fill="white"><polygon points="0,0 13,7.5 0,15"/></svg>'; }
+function rp(id) { const f=document.getElementById(id+'-f'), t=document.getElementById(id+'-t'); if(f)f.style.width='0%'; if(t)t.textContent='0:00'; }
+function fmt(s) { if(!s||isNaN(s))return'0:00'; return Math.floor(s/60)+':'+(Math.floor(s%60)<10?'0':'')+Math.floor(s%60); }
+
+function sk(id, e, bar) {
+  const a = document.getElementById(id);
+  if (!a || !a.duration) return;
+  const r = bar.getBoundingClientRect();
+  a.currentTime = Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)) * a.duration;
+}
+
+document.querySelectorAll('audio').forEach(a => {
+  const id = a.id;
+  a.addEventListener('timeupdate', () => {
+    const f=document.getElementById(id+'-f'), t=document.getElementById(id+'-t');
+    if(f&&a.duration) f.style.width=(a.currentTime/a.duration*100)+'%';
+    if(t) t.textContent=fmt(a.currentTime);
+  });
+  a.addEventListener('ended', () => { rb(curB); rp(id); curA=null; curB=null; });
+  a.addEventListener('error', () => {
+    const s=a.closest('.player'); if(s){ const l=s.querySelector('.plabel'); if(l) l.style.color='rgba(255,100,100,0.5)'; }
+  });
+});
+
+document.querySelectorAll('#nav a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
